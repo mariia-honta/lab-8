@@ -28,5 +28,12 @@
  * @returns {Show}
  */
 export function normalizeShow(raw) {
-  throw new Error('Not implemented');
+  const id = raw.id;
+  const name = raw.name;
+  const year = raw.premiered ? Number(raw.premiered.slice(0, 4)) : null;
+  const rating = raw.rating?.average ?? null;
+  const runtime = raw.runtime ?? null;
+  const network = raw.network?.name ?? null;
+  const genres = Array.isArray(raw.genres) ? [...raw.genres] : [];
+  return { id, name, year, rating, runtime, network, genres };
 }
